@@ -8,7 +8,8 @@ A website For people who want to take notes.
 * HTML
 * CSS
 * JS
-*
+* Node
+* OOP
 
 ## Website
 
