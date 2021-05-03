@@ -5,7 +5,12 @@ html, body {
   }
   
   .save-note {
-    display: none;
+    display:-webkit-inline-box;
+    
+  }
+  
+  .delete-note{
+    display: block;
   }
   
   .icons i {

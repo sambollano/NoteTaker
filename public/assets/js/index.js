@@ -3,8 +3,9 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
+let deleteNotebtn;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/public/notes.html') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -26,7 +27,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/notes', {
+  fetch('/public/notes.html', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ const saveNote = (note) =>
   });
 
 const deleteNote = (id) =>
-  fetch(`/api/notes/${id}`, {
+  fetch(`/api/notes.hmtl/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -77,24 +78,6 @@ const handleNoteSave = () => {
   });
 };
 
-// Delete the clicked note
-const handleNoteDelete = (e) => {
-  // prevents the click listener for the list from being called when the button inside of it is clicked
-  e.stopPropagation();
-
-  const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
-  if (activeNote.id === noteId) {
-    activeNote = {};
-  }
-
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
-};
-
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
@@ -116,13 +99,23 @@ const handleRenderSaveBtn = () => {
   }
 };
 
+
+const apiRoutes = require("./api.js");
+const router = require("express").Router();
+
+router.use("/api", apiRoutes);
+
+module.exports = router;
+
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/public/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
+
+  
   let noteListItems = [];
 
   // Returns HTML element with or without a delete button
@@ -164,19 +157,20 @@ const renderNoteList = async (notes) => {
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/public/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+const getAndNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === 'public /notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
-}
+  deleteNotebtn.addEventListener('click', handleNoteDelete);
+} 
 
 getAndRenderNotes();
