@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,16 +10,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/flatly/bootstrap.min.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/public/assets/css/style.css">
+  <link rel="stylesheet" href="/public/index.html">
+
 </head>
 
 <body>
   <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Note Taker
+    <a class="navbar-brand" href="/public/index.html">Note Taker
     </a>
+    
     <div class="icons">
-      <i class="fas fa-save text-light save-note"></i>
+      <form action="/action_page.php" method="get">
+        <button type="submit" value="Submit">Save</button>
+        <button type="reset" value="Reset">Edit</button>
+      </form>
+      <i class="fas fa-save text-light save-note" button type= "submit" value="Submit"></i>
       <i class="fas fa-pen text-light new-note"></i>
+      
     </div>
   </nav>
   <div class="container-fluid">
@@ -35,7 +44,7 @@
       </div>
     </div>
   </div>
-  <script src="/assets/js/index.js"></script>
+  <script src="/public/assets/js/index.js"></script>
 </body>
 
 </html>

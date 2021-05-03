@@ -1,0 +1,22 @@
+{
+  "name": "notetaker",
+  "version": "1.0.0",
+  "description": "11. Express.js Challenge: Note Taker",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sambollano/NoteTaker.git"
+  },
+  "keywords": [
+    "[]"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sambollano/NoteTaker/issues"
+  },
+  "homepage": "https://github.com/sambollano/NoteTaker#readme"
+}
